@@ -1,0 +1,28 @@
+{
+  "name": "cash-dnr-api",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "South African FinTech API for transaction logging and tax management",
+  "main": "API/server.js",
+  "scripts": {
+    "start": "node API/server.js",
+    "server": "node API/server.js",
+    "test": "node test-api.js",
+    "dev": "node API/server.js"
+  },
+  "keywords": [
+    "fintech",
+    "south-africa",
+    "api",
+    "transactions",
+    "tax",
+    "home-affairs",
+    "cipc"
+  ],
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "node-fetch": "^3.3.2"
+  }
+}
