@@ -34,10 +34,10 @@ const rateLimit = (req, res, next) => {
 
 app.use(rateLimit);
 
-// Mock Home Affairs Data
+// Mock Home Affairs Data (using generated valid SA ID numbers)
 let citizens = [
   {
-    idNumber: "9001015009087",
+    idNumber: "9001015009087", // Original valid ID
     firstName: "John",
     lastName: "Doe",
     fullName: "John Doe",
@@ -60,7 +60,7 @@ let citizens = [
     userType: "Individual"
   },
   {
-    idNumber: "9202026009089",
+    idNumber: "9202026009089", // Original valid ID
     firstName: "Jane",
     lastName: "Doe",
     fullName: "Jane Doe",
@@ -81,6 +81,99 @@ let citizens = [
     },
     taxId: "TAX-654321",
     userType: "Individual"
+  },
+  // Additional test citizens with generated valid IDs
+  {
+    idNumber: "6507093167086",
+    firstName: "Thandiwe",
+    lastName: "Thomas",
+    fullName: "Thandiwe Thomas",
+    dateOfBirth: "1965-07-09",
+    gender: "Female",
+    nationality: "South African",
+    maritalStatus: "Single",
+    spouseIdNumber: null,
+    deceasedStatus: "Alive",
+    passportNumber: "C11223344",
+    address: {
+      residential: "45 Cape Town Street, Cape Town, 8001",
+      postal: "PO Box 789, Cape Town, 8002"
+    },
+    contact: {
+      phone: "+27 84 555 1234",
+      email: "thandiwe.thomas@example.com"
+    },
+    taxId: "TAX-789123",
+    userType: "Individual"
+  },
+  {
+    idNumber: "9401159384081",
+    firstName: "Larry",
+    lastName: "Ramirez",
+    fullName: "Larry Ramirez",
+    dateOfBirth: "1994-01-15",
+    gender: "Male",
+    nationality: "South African",
+    maritalStatus: "Single",
+    spouseIdNumber: null,
+    deceasedStatus: "Alive",
+    passportNumber: "D55667788",
+    address: {
+      residential: "78 Durban Road, Durban, 4001",
+      postal: "PO Box 321, Durban, 4002"
+    },
+    contact: {
+      phone: "+27 86 777 8899",
+      email: "larry.ramirez@example.com"
+    },
+    taxId: "TAX-456789",
+    userType: "Individual"
+  },
+  {
+    idNumber: "8012096300089",
+    firstName: "Jonathan",
+    lastName: "Robinson",
+    fullName: "Jonathan Robinson",
+    dateOfBirth: "1980-12-09",
+    gender: "Male",
+    nationality: "South African",
+    maritalStatus: "Married",
+    spouseIdNumber: "7510103688082",
+    deceasedStatus: "Alive",
+    passportNumber: "E99887766",
+    address: {
+      residential: "156 Pretoria Avenue, Pretoria, 0001",
+      postal: "PO Box 654, Pretoria, 0002"
+    },
+    contact: {
+      phone: "+27 81 333 4455",
+      email: "jonathan.robinson@example.com"
+    },
+    taxId: "TAX-987654",
+    userType: "Individual"
+  },
+  {
+    idNumber: "7510103688082",
+    firstName: "Sarah",
+    lastName: "Gonzalez",
+    fullName: "Sarah Gonzalez",
+    dateOfBirth: "1975-10-10",
+    gender: "Female",
+    nationality: "South African",
+    maritalStatus: "Married",
+    spouseIdNumber: "8012096300089",
+    deceasedStatus: "Alive",
+    passportNumber: "F44556677",
+    address: {
+      residential: "156 Pretoria Avenue, Pretoria, 0001",
+      postal: "PO Box 654, Pretoria, 0002"
+    },
+    contact: {
+      phone: "+27 82 666 7788",
+      email: "sarah.gonzalez@example.com"
+    },
+    taxId: "TAX-147258",
+    userType: "Individual"
   }
 ];
 
@@ -98,6 +191,38 @@ let businesses = [
     ],
     address: {
       registered: "45 Business Park, Sandton, 2196"
+    },
+    userType: "Business"
+  },
+  {
+    businessRegNumber: "2023/789123/07",
+    registeredName: "TechCorp Solutions (Pty) Ltd",
+    tradingName: "TechCorp",
+    registrationDate: "2023-03-15",
+    taxId: "TAX-456123",
+    status: "Active",
+    directors: [
+      { idNumber: "9401159384081", name: "Larry Ramirez" },
+      { idNumber: "8012096300089", name: "Jonathan Robinson" }
+    ],
+    address: {
+      registered: "88 Innovation Drive, Cape Town, 8001"
+    },
+    userType: "Business"
+  },
+  {
+    businessRegNumber: "2021/555888/07",
+    registeredName: "Green Energy Partners (Pty) Ltd",
+    tradingName: "Green Energy",
+    registrationDate: "2021-08-20",
+    taxId: "TAX-852741",
+    status: "Active",
+    directors: [
+      { idNumber: "8012096300089", name: "Jonathan Robinson" },
+      { idNumber: "7510103688082", name: "Sarah Gonzalez" }
+    ],
+    address: {
+      registered: "200 Renewable Street, Durban, 4001"
     },
     userType: "Business"
   }
