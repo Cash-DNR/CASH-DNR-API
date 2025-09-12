@@ -1,10 +1,19 @@
 import express from "express";
 import cors from "cors";
 import crypto from "crypto";
+import homeAffairsRouter from '../services/home-affairs/routes.js';
+import sarsRouter from '../services/sars/routes.js';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// Mount service APIs
+app.use('/home-affairs', homeAffairsRouter);
+app.use('/sars', sarsRouter);
+
+// Mount Home Affairs API
+app.use('/home-affairs', homeAffairsRouter);
 
 // Rate limiting for API security
 const rateLimitMap = new Map();
@@ -278,6 +287,32 @@ const classifyTransaction = (amount, purpose) => {
   
   return "Non-Taxable";
 };
+
+// Helper function to calculate next filing due dates
+function calculateNextFilingDue(lastSubmissions) {
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const currentMonth = now.getMonth() + 1;
+
+  return {
+    VAT: lastSubmissions.VAT === "N/A" ? null : {
+      period: `${currentYear}-Q${Math.floor((currentMonth - 1) / 3) + 1}`,
+      dueDate: `${currentYear}-${String(Math.floor((currentMonth - 1) / 3) * 3 + 3).padStart(2, '0')}-25`
+    },
+    PAYE: lastSubmissions.PAYE === "N/A" ? null : {
+      period: `${currentYear}-${String(currentMonth).padStart(2, '0')}`,
+      dueDate: `${currentYear}-${String(currentMonth).padStart(2, '0')}-07`
+    },
+    ITR: {
+      period: String(currentYear),
+      dueDate: `${currentYear}-11-30`
+    },
+    PIT: {
+      period: String(currentYear),
+      dueDate: `${currentYear}-11-30`
+    }
+  };
+}
 
 // === USER REGISTRATION API ===
 
@@ -1047,6 +1082,55 @@ app.get("/api/admin/audit-logs", (req, res) => {
   } catch (error) {
     console.error("Audit logs error:", error);
     res.status(500).json({ error: "Internal server error retrieving audit logs" });
+  }
+});
+
+// === TAX VERIFICATION API ===
+app.get("/api/citizens/:idNumber/tax-verification", (req, res) => {
+  try {
+    const { idNumber } = req.params;
+    const citizen = citizens.find(c => c.idNumber === idNumber);
+
+    if (!citizen) {
+      return res.status(404).json({
+        success: false,
+        error: "Citizen not found"
+      });
+    }
+
+    // Tax verification logic with detailed compliance checking
+    const hasTaxNumber = citizen.taxNumber !== null;
+    
+    const taxVerificationResult = {
+      success: true,
+      idNumber: citizen.idNumber,
+      isTaxRegistered: hasTaxNumber,
+      taxNumber: citizen.taxNumber,
+      verificationTimestamp: new Date().toISOString(),
+      validationSource: "Mock Home Affairs DB"
+    };
+
+    if (hasTaxNumber) {
+      // Include detailed tax compliance information
+      taxVerificationResult.complianceDetails = {
+        status: citizen.taxDetails.complianceStatus,
+        lastVerified: citizen.taxDetails.lastVerificationDate,
+        outstandingReturns: citizen.taxDetails.outstandingReturns,
+        lastSubmissions: citizen.taxDetails.lastSubmissions,
+        complianceIssues: citizen.taxDetails.complianceIssues,
+        nextFilingDue: calculateNextFilingDue(citizen.taxDetails.lastSubmissions)
+      };
+    } else {
+      taxVerificationResult.status = "Not Registered";
+    }
+
+    res.json(taxVerificationResult);
+  } catch (error) {
+    console.error("Tax verification error:", error);
+    res.status(500).json({ 
+      success: false,
+      error: "Internal server error during tax verification" 
+    });
   }
 });
 

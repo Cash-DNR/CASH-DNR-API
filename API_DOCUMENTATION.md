@@ -292,6 +292,79 @@ Exports tax data for SARS submission.
 
 Verifies citizen data against Home Affairs database.
 
+### Verify Tax Status
+**GET** `/citizens/{idNumber}/tax-verification`
+
+Verifies citizen's tax status.
+
+**Response (200) - Registered Taxpayer:**
+```json
+{
+  "success": true,
+  "idNumber": "9001015009087",
+  "isTaxRegistered": true,
+  "taxNumber": "1990601554",
+  "verificationTimestamp": "2025-09-12T10:30:00Z",
+  "validationSource": "Mock Home Affairs DB",
+  "complianceDetails": {
+    "status": "Non-compliant",  // Possible values: "Compliant", "Non-compliant", "Pending", "Unknown"
+    "lastVerified": "2025-09-12",
+    "outstandingReturns": {
+      "VAT": ["2025-Q2", "2025-Q3"],
+      "PAYE": [],
+      "ITR": ["2024"],
+      "PIT": ["2024"]
+    },
+    "lastSubmissions": {
+      "VAT": "2025-03-25",
+      "PAYE": "2025-09-01",
+      "ITR": "2023-11-30",
+      "PIT": "2023-11-30"
+    },
+    "complianceIssues": [
+      "Outstanding VAT returns",
+      "Late ITR submission",
+      "Overdue tax payment"
+    ],
+    "nextFilingDue": {
+      "VAT": {
+        "period": "2025-Q3",
+        "dueDate": "2025-09-25"
+      },
+      "PAYE": {
+        "period": "2025-09",
+        "dueDate": "2025-09-07"
+      },
+      "ITR": {
+        "period": "2025",
+        "dueDate": "2025-11-30"
+      },
+      "PIT": {
+        "period": "2025",
+        "dueDate": "2025-11-30"
+      }
+    }
+  }
+}
+```
+
+**Response (200) - Non-Registered Person:**
+```json
+{
+  "success": true,
+  "idNumber": "0201014567083",
+  "isTaxRegistered": false,
+  "taxNumber": null,
+  "status": "Not Registered",
+  "verificationTimestamp": "2025-09-12T10:30:00Z",
+  "validationSource": "Mock Home Affairs DB"
+}
+```
+
+**Error Responses:**
+- `404`: Citizen not found
+- `500`: Internal server error
+
 ### Verify Business (CIPC)
 **GET** `/businesses/{regNumber}`
 
