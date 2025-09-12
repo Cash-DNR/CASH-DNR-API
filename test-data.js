@@ -9,8 +9,7 @@ const testData = {
           idNumber: "9006155431081",
           name: "John Smith",
           birthDate: "1990-06-15",
-          email: "john.smith@example.com",
-          phone: "+27 82 123 4567"
+          email: "john.smith@example.com"
         },
         {
           idNumber: "9511087890080",
@@ -157,14 +156,12 @@ const quickTests = {
   registerMale: {
     idNumber: "9006155431081", // John Smith
     contactInfo: {
-      phone: "+27 82 123 4567",
       email: "john.smith@example.com"
     }
   },
   registerFemale: {
     idNumber: "8503221234086", // Mary Johnson
     contactInfo: {
-      phone: "+27 82 123 4567",
       email: "mary.johnson@example.com"
     }
   },
@@ -173,7 +170,6 @@ const quickTests = {
     businessRegNumber: "2023/123456/07",
     representativeIdNumber: "9006155431081", // John Smith as representative
     contactInfo: {
-      phone: "+27 82 123 4567",
       email: "business@example.com"
     }
   }
