@@ -1,0 +1,113 @@
+{
+  "taxpayers": {
+    "individuals": [
+      {
+        "idNumber": "9001015009087",
+        "taxNumber": "1990601554",
+        "registrationDate": "2008-03-15",
+        "taxStatus": "Registered",
+        "complianceStatus": "Non-compliant",
+        "outstandingReturns": {
+          "VAT": ["2025-Q2", "2025-Q3"],
+          "PAYE": [],
+          "ITR": ["2024"],
+          "PIT": ["2024"]
+        },
+        "lastSubmissions": {
+          "VAT": "2025-03-25",
+          "PAYE": "2025-09-01",
+          "ITR": "2023-11-30",
+          "PIT": "2023-11-30"
+        }
+      },
+      {
+        "idNumber": "8505125800082",
+        "taxNumber": "1985512587",
+        "registrationDate": "2003-06-20",
+        "taxStatus": "Registered",
+        "complianceStatus": "Compliant",
+        "outstandingReturns": {
+          "VAT": [],
+          "PAYE": [],
+          "ITR": [],
+          "PIT": []
+        },
+        "lastSubmissions": {
+          "VAT": "2025-08-25",
+          "PAYE": "2025-09-01",
+          "ITR": "2024-07-30",
+          "PIT": "2024-07-30"
+        }
+      },
+      {
+        "idNumber": "7707215102083",
+        "taxNumber": "1977721510",
+        "registrationDate": "1995-02-10",
+        "taxStatus": "Registered",
+        "complianceStatus": "Compliant",
+        "outstandingReturns": {
+          "VAT": [],
+          "PAYE": [],
+          "ITR": [],
+          "PIT": []
+        },
+        "lastSubmissions": {
+          "VAT": "2025-08-25",
+          "PAYE": "2025-09-01",
+          "ITR": "2024-06-15",
+          "PIT": "2024-06-15"
+        }
+      }
+    ],
+    "businesses": [
+      {
+        "registrationNumber": "2022/123456/07",
+        "taxNumber": "9088765432",
+        "registrationDate": "2022-03-15",
+        "tradingName": "ACME",
+        "registeredName": "ACME PTY LTD",
+        "taxStatus": "Registered",
+        "complianceStatus": "Compliant",
+        "vatNumber": "4830256917",
+        "payeNumber": "7331458962",
+        "outstandingReturns": {
+          "VAT": [],
+          "PAYE": [],
+          "ITR14": []
+        }
+      },
+      {
+        "registrationNumber": "2021/987654/07",
+        "taxNumber": "9077654321",
+        "registrationDate": "2021-11-20",
+        "tradingName": "Tech Solutions",
+        "registeredName": "TECH SOLUTIONS PTY LTD",
+        "taxStatus": "Registered",
+        "complianceStatus": "Compliant",
+        "vatNumber": "4741258963",
+        "payeNumber": "7225836914",
+        "outstandingReturns": {
+          "VAT": [],
+          "PAYE": [],
+          "ITR14": []
+        }
+      },
+      {
+        "registrationNumber": "2023/456789/07",
+        "taxNumber": "9066543210",
+        "registrationDate": "2023-05-08",
+        "tradingName": "Green Innovate",
+        "registeredName": "GREEN INNOVATE PTY LTD",
+        "taxStatus": "Registered",
+        "complianceStatus": "Non-compliant",
+        "vatNumber": "4652147893",
+        "payeNumber": "7114725836",
+        "outstandingReturns": {
+          "VAT": ["2025-Q3"],
+          "PAYE": [],
+          "ITR14": ["2024"]
+        }
+      }
+    ]
+  }
+}

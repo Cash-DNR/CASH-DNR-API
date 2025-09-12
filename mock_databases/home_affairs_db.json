@@ -1,0 +1,61 @@
+{
+  "citizens": [
+    {
+      "idNumber": "9001015009087",
+      "firstName": "John",
+      "lastName": "Doe",
+      "fullName": "John Doe",
+      "dateOfBirth": "1990-01-01",
+      "gender": "Male",
+      "nationality": "South African",
+      "maritalStatus": "Single",
+      "isDeceased": false,
+      "address": {
+        "street": "123 Main Road",
+        "suburb": "Sandton",
+        "city": "Johannesburg",
+        "province": "Gauteng",
+        "postalCode": "2196"
+      },
+      "verificationStatus": "Verified"
+    },
+    {
+      "idNumber": "8505125800082",
+      "firstName": "Sarah",
+      "lastName": "Smith",
+      "fullName": "Sarah Smith",
+      "dateOfBirth": "1985-05-12",
+      "gender": "Female",
+      "nationality": "South African",
+      "maritalStatus": "Married",
+      "isDeceased": false,
+      "address": {
+        "street": "45 Beach Road",
+        "suburb": "Sea Point",
+        "city": "Cape Town",
+        "province": "Western Cape",
+        "postalCode": "8005"
+      },
+      "verificationStatus": "Verified"
+    },
+    {
+      "idNumber": "7707215102083",
+      "firstName": "Michael",
+      "lastName": "Jones",
+      "fullName": "Michael Jones",
+      "dateOfBirth": "1977-07-21",
+      "gender": "Male",
+      "nationality": "South African",
+      "maritalStatus": "Divorced",
+      "isDeceased": false,
+      "address": {
+        "street": "78 Church Street",
+        "suburb": "Hatfield",
+        "city": "Pretoria",
+        "province": "Gauteng",
+        "postalCode": "0028"
+      },
+      "verificationStatus": "Verified"
+    }
+  ]
+}
