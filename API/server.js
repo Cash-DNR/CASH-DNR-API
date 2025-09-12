@@ -12,9 +12,6 @@ app.use(express.json());
 app.use('/home-affairs', homeAffairsRouter);
 app.use('/sars', sarsRouter);
 
-// Mount Home Affairs API
-app.use('/home-affairs', homeAffairsRouter);
-
 // Rate limiting for API security
 const rateLimitMap = new Map();
 const RATE_LIMIT_WINDOW = 60000; // 1 minute
@@ -43,199 +40,23 @@ const rateLimit = (req, res, next) => {
 
 app.use(rateLimit);
 
-// Mock Home Affairs Data (using generated valid SA ID numbers)
-let citizens = [
-  {
-    idNumber: "9001015009087", // Original valid ID
-    firstName: "John",
-    lastName: "Doe",
-    fullName: "John Doe",
-    dateOfBirth: "1990-01-01",
-    gender: "Male",
-    nationality: "South African",
-    maritalStatus: "Married",
-    spouseIdNumber: "9202026009089",
-    deceasedStatus: "Alive",
-    passportNumber: "A12345678",
-    address: {
-      residential: "123 Main Street, Johannesburg, 2000",
-      postal: "PO Box 456, Johannesburg, 2001"
-    },
-    contact: {
-      phone: "+27 82 123 4567",
-      email: "john.doe@example.com"
-    },
-    taxId: "TAX-123456",
-    userType: "Individual"
-  },
-  {
-    idNumber: "9202026009089", // Original valid ID
-    firstName: "Jane",
-    lastName: "Doe",
-    fullName: "Jane Doe",
-    dateOfBirth: "1992-02-02",
-    gender: "Female",
-    nationality: "South African",
-    maritalStatus: "Married",
-    spouseIdNumber: "9001015009087",
-    deceasedStatus: "Alive",
-    passportNumber: "B98765432",
-    address: {
-      residential: "123 Main Street, Johannesburg, 2000",
-      postal: "PO Box 456, Johannesburg, 2001"
-    },
-    contact: {
-      phone: "+27 83 987 6543",
-      email: "jane.doe@example.com"
-    },
-    taxId: "TAX-654321",
-    userType: "Individual"
-  },
-  // Additional test citizens with generated valid IDs
-  {
-    idNumber: "6507093167086",
-    firstName: "Thandiwe",
-    lastName: "Thomas",
-    fullName: "Thandiwe Thomas",
-    dateOfBirth: "1965-07-09",
-    gender: "Female",
-    nationality: "South African",
-    maritalStatus: "Single",
-    spouseIdNumber: null,
-    deceasedStatus: "Alive",
-    passportNumber: "C11223344",
-    address: {
-      residential: "45 Cape Town Street, Cape Town, 8001",
-      postal: "PO Box 789, Cape Town, 8002"
-    },
-    contact: {
-      phone: "+27 84 555 1234",
-      email: "thandiwe.thomas@example.com"
-    },
-    taxId: "TAX-789123",
-    userType: "Individual"
-  },
-  {
-    idNumber: "9401159384081",
-    firstName: "Larry",
-    lastName: "Ramirez",
-    fullName: "Larry Ramirez",
-    dateOfBirth: "1994-01-15",
-    gender: "Male",
-    nationality: "South African",
-    maritalStatus: "Single",
-    spouseIdNumber: null,
-    deceasedStatus: "Alive",
-    passportNumber: "D55667788",
-    address: {
-      residential: "78 Durban Road, Durban, 4001",
-      postal: "PO Box 321, Durban, 4002"
-    },
-    contact: {
-      phone: "+27 86 777 8899",
-      email: "larry.ramirez@example.com"
-    },
-    taxId: "TAX-456789",
-    userType: "Individual"
-  },
-  {
-    idNumber: "8012096300089",
-    firstName: "Jonathan",
-    lastName: "Robinson",
-    fullName: "Jonathan Robinson",
-    dateOfBirth: "1980-12-09",
-    gender: "Male",
-    nationality: "South African",
-    maritalStatus: "Married",
-    spouseIdNumber: "7510103688082",
-    deceasedStatus: "Alive",
-    passportNumber: "E99887766",
-    address: {
-      residential: "156 Pretoria Avenue, Pretoria, 0001",
-      postal: "PO Box 654, Pretoria, 0002"
-    },
-    contact: {
-      phone: "+27 81 333 4455",
-      email: "jonathan.robinson@example.com"
-    },
-    taxId: "TAX-987654",
-    userType: "Individual"
-  },
-  {
-    idNumber: "7510103688082",
-    firstName: "Sarah",
-    lastName: "Gonzalez",
-    fullName: "Sarah Gonzalez",
-    dateOfBirth: "1975-10-10",
-    gender: "Female",
-    nationality: "South African",
-    maritalStatus: "Married",
-    spouseIdNumber: "8012096300089",
-    deceasedStatus: "Alive",
-    passportNumber: "F44556677",
-    address: {
-      residential: "156 Pretoria Avenue, Pretoria, 0001",
-      postal: "PO Box 654, Pretoria, 0002"
-    },
-    contact: {
-      phone: "+27 82 666 7788",
-      email: "sarah.gonzalez@example.com"
-    },
-    taxId: "TAX-147258",
-    userType: "Individual"
-  }
-];
+// Load data from JSON files
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-let businesses = [
-  {
-    businessRegNumber: "2022/123456/07",
-    registeredName: "ACME Pty Ltd",
-    tradingName: "ACME",
-    registrationDate: "2022-05-01",
-    taxId: "TAX-789012",
-    status: "Active",
-    directors: [
-      { idNumber: "9001015009087", name: "John Doe" },
-      { idNumber: "9202026009089", name: "Jane Doe" }
-    ],
-    address: {
-      registered: "45 Business Park, Sandton, 2196"
-    },
-    userType: "Business"
-  },
-  {
-    businessRegNumber: "2023/789123/07",
-    registeredName: "TechCorp Solutions (Pty) Ltd",
-    tradingName: "TechCorp",
-    registrationDate: "2023-03-15",
-    taxId: "TAX-456123",
-    status: "Active",
-    directors: [
-      { idNumber: "9401159384081", name: "Larry Ramirez" },
-      { idNumber: "8012096300089", name: "Jonathan Robinson" }
-    ],
-    address: {
-      registered: "88 Innovation Drive, Cape Town, 8001"
-    },
-    userType: "Business"
-  },
-  {
-    businessRegNumber: "2021/555888/07",
-    registeredName: "Green Energy Partners (Pty) Ltd",
-    tradingName: "Green Energy",
-    registrationDate: "2021-08-20",
-    taxId: "TAX-852741",
-    status: "Active",
-    directors: [
-      { idNumber: "8012096300089", name: "Jonathan Robinson" },
-      { idNumber: "7510103688082", name: "Sarah Gonzalez" }
-    ],
-    address: {
-      registered: "200 Renewable Street, Durban, 4001"
-    },
-    userType: "Business"
-  }
-];
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load Home Affairs database
+const homeAffairsPath = path.join(__dirname, '..', 'mock_databases', 'home_affairs_db.json');
+const sarsPath = path.join(__dirname, '..', 'mock_databases', 'sars_db.json');
+
+const homeAffairsData = JSON.parse(fs.readFileSync(homeAffairsPath, 'utf8'));
+const sarsData = JSON.parse(fs.readFileSync(sarsPath, 'utf8'));
+
+let citizens = homeAffairsData.citizens;
+let businesses = sarsData.taxpayers.businesses;
 
 // In-memory storage (replace with database in production)
 let registeredUsers = [];
@@ -492,12 +313,21 @@ app.post("/api/register/business", (req, res) => {
   }
 });
 // === HOME AFFAIRS VERIFICATION API ===
-app.get("/api/citizens/:idNumber", (req, res) => {
+app.get("/home-affairs/citizens/:idNumber", (req, res) => {
   const citizen = citizens.find(u => u.idNumber === req.params.idNumber);
   if (!citizen) {
-    return res.status(404).json({ error: "Citizen not found in Home Affairs DB (mock)" });
+    return res.status(404).json({ 
+      success: false,
+      error: "Citizen not found in Home Affairs database" 
+    });
   }
-  res.json(citizen);
+  res.json({
+    success: true,
+    citizen: {
+      ...citizen,
+      deceasedStatus: citizen.isDeceased ? "Deceased" : "Alive"
+    }
+  });
 });
 
 // === CIPC BUSINESS VERIFICATION API ===
@@ -1089,40 +919,31 @@ app.get("/api/admin/audit-logs", (req, res) => {
 app.get("/api/citizens/:idNumber/tax-verification", (req, res) => {
   try {
     const { idNumber } = req.params;
-    const citizen = citizens.find(c => c.idNumber === idNumber);
+    const taxpayer = sarsData.taxpayers.individuals.find(t => t.idNumber === idNumber);
 
-    if (!citizen) {
+    if (!taxpayer) {
       return res.status(404).json({
         success: false,
-        error: "Citizen not found"
+        error: "Taxpayer not found"
       });
     }
 
-    // Tax verification logic with detailed compliance checking
-    const hasTaxNumber = citizen.taxNumber !== null;
-    
     const taxVerificationResult = {
       success: true,
-      idNumber: citizen.idNumber,
-      isTaxRegistered: hasTaxNumber,
-      taxNumber: citizen.taxNumber,
+      idNumber: taxpayer.idNumber,
+      isTaxRegistered: true,
+      taxNumber: taxpayer.taxNumber,
       verificationTimestamp: new Date().toISOString(),
-      validationSource: "Mock Home Affairs DB"
+      validationSource: "Mock SARS DB",
+      complianceDetails: {
+        status: taxpayer.complianceStatus,
+        lastVerified: new Date().toISOString(),
+        outstandingReturns: taxpayer.outstandingReturns,
+        lastSubmissions: taxpayer.lastSubmissions,
+        complianceIssues: [],
+        nextFilingDue: calculateNextFilingDue(taxpayer.lastSubmissions)
+      }
     };
-
-    if (hasTaxNumber) {
-      // Include detailed tax compliance information
-      taxVerificationResult.complianceDetails = {
-        status: citizen.taxDetails.complianceStatus,
-        lastVerified: citizen.taxDetails.lastVerificationDate,
-        outstandingReturns: citizen.taxDetails.outstandingReturns,
-        lastSubmissions: citizen.taxDetails.lastSubmissions,
-        complianceIssues: citizen.taxDetails.complianceIssues,
-        nextFilingDue: calculateNextFilingDue(citizen.taxDetails.lastSubmissions)
-      };
-    } else {
-      taxVerificationResult.status = "Not Registered";
-    }
 
     res.json(taxVerificationResult);
   } catch (error) {
