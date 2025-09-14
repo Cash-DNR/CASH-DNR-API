@@ -2,9 +2,28 @@
   "taxpayers": {
     "individuals": [
       {
-        "idNumber": "9001015009087",
-        "taxNumber": "1990601554",
-        "registrationDate": "2008-03-15",
+        "idNumber": "9006155431081",
+        "taxNumber": "1990615543",
+        "registrationDate": "2008-07-15",
+        "taxStatus": "Registered",
+        "complianceStatus": "Compliant",
+        "outstandingReturns": {
+          "VAT": [],
+          "PAYE": [],
+          "ITR": [],
+          "PIT": []
+        },
+        "lastSubmissions": {
+          "VAT": "2025-08-25",
+          "PAYE": "2025-09-01",
+          "ITR": "2024-07-30",
+          "PIT": "2024-07-30"
+        }
+      },
+      {
+        "idNumber": "8503221234086",
+        "taxNumber": "1985322123",
+        "registrationDate": "2003-04-01",
         "taxStatus": "Registered",
         "complianceStatus": "Non-compliant",
         "outstandingReturns": {
@@ -14,8 +33,84 @@
           "PIT": ["2024"]
         },
         "lastSubmissions": {
-          "VAT": "2025-03-25",
+          "VAT": "2024-12-25",
           "PAYE": "2025-09-01",
+          "ITR": "2023-11-30",
+          "PIT": "2023-11-30"
+        }
+      },
+      {
+        "idNumber": "9511087890080",
+        "taxNumber": "1995108789",
+        "registrationDate": "2013-01-15",
+        "taxStatus": "Registered",
+        "complianceStatus": "Compliant",
+        "outstandingReturns": {
+          "VAT": [],
+          "PAYE": [],
+          "ITR": [],
+          "PIT": []
+        },
+        "lastSubmissions": {
+          "VAT": "2025-08-25",
+          "PAYE": "2025-09-01",
+          "ITR": "2024-06-30",
+          "PIT": "2024-06-30"
+        }
+      },
+      {
+        "idNumber": "8709253456089",
+        "taxNumber": "1987925345",
+        "registrationDate": "2005-03-10",
+        "taxStatus": "Registered",
+        "complianceStatus": "Review Required",
+        "outstandingReturns": {
+          "VAT": [],
+          "PAYE": [],
+          "ITR": ["2024"],
+          "PIT": ["2024"]
+        },
+        "lastSubmissions": {
+          "VAT": "2025-08-25",
+          "PAYE": "2025-09-01",
+          "ITR": "2023-11-30",
+          "PIT": "2023-11-30"
+        }
+      },
+      {
+        "idNumber": "9301058901086",
+        "taxNumber": "1993105890",
+        "registrationDate": "2011-02-20",
+        "taxStatus": "Registered",
+        "complianceStatus": "Compliant",
+        "outstandingReturns": {
+          "VAT": [],
+          "PAYE": [],
+          "ITR": [],
+          "PIT": []
+        },
+        "lastSubmissions": {
+          "VAT": "2025-08-25",
+          "PAYE": "2025-09-01",
+          "ITR": "2024-07-15",
+          "PIT": "2024-07-15"
+        }
+      },
+      {
+        "idNumber": "8612031111085",
+        "taxNumber": "1986203111",
+        "registrationDate": "2004-06-15",
+        "taxStatus": "Registered",
+        "complianceStatus": "Non-compliant",
+        "outstandingReturns": {
+          "VAT": ["2025-Q3"],
+          "PAYE": ["2025-08", "2025-09"],
+          "ITR": ["2024"],
+          "PIT": ["2024"]
+        },
+        "lastSubmissions": {
+          "VAT": "2025-06-25",
+          "PAYE": "2025-07-07",
           "ITR": "2023-11-30",
           "PIT": "2023-11-30"
         }
