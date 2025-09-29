@@ -48,12 +48,31 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Load Home Affairs database
-const homeAffairsPath = path.join(__dirname, '..', 'mock_databases', 'home_affairs_db.json');
-const sarsPath = path.join(__dirname, '..', 'mock_databases', 'sars_db.json');
+// Load Home Affairs database - try both local and deployment paths
+let homeAffairsPath = path.join(__dirname, 'mock_databases', 'home_affairs_db.json');
+let sarsPath = path.join(__dirname, 'mock_databases', 'sars_db.json');
 
-const homeAffairsData = JSON.parse(fs.readFileSync(homeAffairsPath, 'utf8'));
-const sarsData = JSON.parse(fs.readFileSync(sarsPath, 'utf8'));
+// Fallback to current directory if not found
+if (!fs.existsSync(homeAffairsPath)) {
+  homeAffairsPath = path.join(__dirname, '..', 'mock_databases', 'home_affairs_db.json');
+  sarsPath = path.join(__dirname, '..', 'mock_databases', 'sars_db.json');
+}
+
+// Add error handling for file reading
+let homeAffairsData, sarsData;
+try {
+  homeAffairsData = JSON.parse(fs.readFileSync(homeAffairsPath, 'utf8'));
+  sarsData = JSON.parse(fs.readFileSync(sarsPath, 'utf8'));
+  console.log('✅ Database files loaded successfully');
+  console.log('📁 Home Affairs DB path:', homeAffairsPath);
+  console.log('📁 SARS DB path:', sarsPath);
+} catch (error) {
+  console.error('❌ Error loading database files:', error.message);
+  console.error('Attempted paths:');
+  console.error('- Home Affairs:', homeAffairsPath);
+  console.error('- SARS:', sarsPath);
+  process.exit(1);
+}
 
 let citizens = homeAffairsData.citizens;
 let businesses = sarsData.taxpayers.businesses;
@@ -969,6 +988,11 @@ app.get("/api/health", (req, res) => {
   });
 });
 
-app.listen(4000, () => {
-  console.log("✅ Mock Home Affairs API running at http://localhost:4000");
+const PORT = process.env.PORT || 4000;
+
+app.listen(PORT, () => {
+  console.log(`✅ Cash DNR API running on port ${PORT}`);
+  console.log(`🌐 Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`📊 Citizens loaded: ${citizens.length}`);
+  console.log(`🏢 Businesses loaded: ${businesses.length}`);
 });
