@@ -1,9 +1,6 @@
 import express from "express";
 import cors from "cors";
 import crypto from "crypto";
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import homeAffairsRouter from './services/home-affairs/routes.js';
 import sarsRouter from './services/sars/routes.js';
 
@@ -43,13 +40,17 @@ const rateLimit = (req, res, next) => {
 
 app.use(rateLimit);
 
+// Load data from JSON files
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Load Home Affairs database
-const homeAffairsPath = path.join(__dirname, 'mock_databases', 'home_affairs_db.json');
-const sarsPath = path.join(__dirname, 'mock_databases', 'sars_db.json');
+const homeAffairsPath = path.join(__dirname, '..', 'mock_databases', 'home_affairs_db.json');
+const sarsPath = path.join(__dirname, '..', 'mock_databases', 'sars_db.json');
 
 const homeAffairsData = JSON.parse(fs.readFileSync(homeAffairsPath, 'utf8'));
 const sarsData = JSON.parse(fs.readFileSync(sarsPath, 'utf8'));
@@ -955,33 +956,19 @@ app.get("/api/citizens/:idNumber/tax-verification", (req, res) => {
 });
 
 // === HEALTH CHECK API ===
-app.get("/", (req, res) => {
-  res.json({
-    message: "CASH-DNR API is running",
-    status: "healthy",
-    timestamp: new Date().toISOString(),
-    version: "1.0.0",
-    services: {
-      homeAffairs: "mock",
-      sars: "mock",
-      database: "in-memory"
-    }
-  });
-});
-
-app.get("/health", (req, res) => {
+app.get("/api/health", (req, res) => {
   res.json({
     status: "healthy",
     timestamp: new Date().toISOString(),
     version: "1.0.0",
     services: {
       homeAffairs: "mock",
-      sars: "mock",
+      cipc: "mock",
       database: "in-memory"
     }
   });
 });
 
-app.listen(process.env.PORT || 4000, () => {
-  console.log(`✅ CASH-DNR API running at http://localhost:${process.env.PORT || 4000}`);
+app.listen(4000, () => {
+  console.log("✅ Mock Home Affairs API running at http://localhost:4000");
 });
