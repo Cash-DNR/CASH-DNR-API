@@ -1,6 +1,9 @@
 import express from "express";
 import cors from "cors";
 import crypto from "crypto";
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import homeAffairsRouter from './services/home-affairs/routes.js';
 import sarsRouter from './services/sars/routes.js';
 
@@ -40,10 +43,6 @@ const rateLimit = (req, res, next) => {
 
 app.use(rateLimit);
 
-// Load data from JSON files
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -956,19 +955,33 @@ app.get("/api/citizens/:idNumber/tax-verification", (req, res) => {
 });
 
 // === HEALTH CHECK API ===
-app.get("/api/health", (req, res) => {
+app.get("/", (req, res) => {
+  res.json({
+    message: "CASH-DNR API is running",
+    status: "healthy",
+    timestamp: new Date().toISOString(),
+    version: "1.0.0",
+    services: {
+      homeAffairs: "mock",
+      sars: "mock",
+      database: "in-memory"
+    }
+  });
+});
+
+app.get("/health", (req, res) => {
   res.json({
     status: "healthy",
     timestamp: new Date().toISOString(),
     version: "1.0.0",
     services: {
       homeAffairs: "mock",
-      cipc: "mock",
+      sars: "mock",
       database: "in-memory"
     }
   });
 });
 
-app.listen(4000, () => {
-  console.log("✅ Mock Home Affairs API running at http://localhost:4000");
+app.listen(process.env.PORT || 4000, () => {
+  console.log(`✅ CASH-DNR API running at http://localhost:${process.env.PORT || 4000}`);
 });
