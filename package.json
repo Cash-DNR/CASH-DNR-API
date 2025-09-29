@@ -6,10 +6,10 @@
   "description": "South African FinTech API for transaction logging and tax management",
   "main": "server.js",
   "scripts": {
-    "start": "node API/server.js",
-    "server": "node API/server.js",
+    "start": "node server.js",
+    "server": "node server.js",
     "test": "node test-api.js",
-    "dev": "node API/server.js"
+    "dev": "node server.js"
   },
   "keywords": [
     "fintech",
