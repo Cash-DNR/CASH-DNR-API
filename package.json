@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "description": "South African FinTech API for transaction logging and tax management",
-  "main": "API/server.js",
+  "main": "server.js",
   "scripts": {
     "start": "node API/server.js",
     "server": "node API/server.js",
