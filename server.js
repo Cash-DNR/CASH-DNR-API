@@ -1,8 +1,8 @@
 import express from "express";
 import cors from "cors";
 import crypto from "crypto";
-import homeAffairsRouter from '../services/home-affairs/routes.js';
-import sarsRouter from '../services/sars/routes.js';
+import homeAffairsRouter from './services/home-affairs/routes.js';
+import sarsRouter from './services/sars/routes.js';
 
 const app = express();
 app.use(cors());
@@ -49,8 +49,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Load Home Affairs database
-const homeAffairsPath = path.join(__dirname, '..', 'mock_databases', 'home_affairs_db.json');
-const sarsPath = path.join(__dirname, '..', 'mock_databases', 'sars_db.json');
+const homeAffairsPath = path.join(__dirname, 'mock_databases', 'home_affairs_db.json');
+const sarsPath = path.join(__dirname, 'mock_databases', 'sars_db.json');
 
 const homeAffairsData = JSON.parse(fs.readFileSync(homeAffairsPath, 'utf8'));
 const sarsData = JSON.parse(fs.readFileSync(sarsPath, 'utf8'));

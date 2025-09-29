@@ -56,6 +56,200 @@
         "postalCode": "0028"
       },
       "verificationStatus": "Verified"
+    },
+    {
+      "idNumber": "9204126789089",
+      "firstName": "David",
+      "lastName": "Wilson",
+      "fullName": "David Wilson",
+      "dateOfBirth": "1992-04-12",
+      "gender": "Male",
+      "nationality": "South African",
+      "maritalStatus": "Single",
+      "isDeceased": false,
+      "address": {
+        "street": "256 Victoria Street",
+        "suburb": "Pietermaritzburg",
+        "city": "Pietermaritzburg",
+        "province": "KwaZulu-Natal",
+        "postalCode": "3201"
+      },
+      "verificationStatus": "Verified"
+    },
+    {
+      "idNumber": "8807302345087",
+      "firstName": "Linda",
+      "lastName": "Brown",
+      "fullName": "Linda Brown",
+      "dateOfBirth": "1988-07-30",
+      "gender": "Female",
+      "nationality": "South African",
+      "maritalStatus": "Married",
+      "spouseIdNumber": "8506158901084",
+      "isDeceased": false,
+      "address": {
+        "street": "89 Rose Avenue",
+        "suburb": "Bloemfontein",
+        "city": "Bloemfontein",
+        "province": "Free State",
+        "postalCode": "9301"
+      },
+      "verificationStatus": "Verified"
+    },
+    {
+      "idNumber": "8506158901084",
+      "firstName": "Robert",
+      "lastName": "Anderson",
+      "fullName": "Robert Anderson",
+      "dateOfBirth": "1985-06-15",
+      "gender": "Male",
+      "nationality": "South African",
+      "maritalStatus": "Married",
+      "spouseIdNumber": "8807302345087",
+      "isDeceased": false,
+      "address": {
+        "street": "89 Rose Avenue",
+        "suburb": "Bloemfontein",
+        "city": "Bloemfontein",
+        "province": "Free State",
+        "postalCode": "9301"
+      },
+      "verificationStatus": "Verified"
+    },
+    {
+      "idNumber": "9105289012088",
+      "firstName": "Jennifer",
+      "lastName": "Davis",
+      "fullName": "Jennifer Davis",
+      "dateOfBirth": "1991-05-28",
+      "gender": "Female",
+      "nationality": "South African",
+      "maritalStatus": "Single",
+      "isDeceased": false,
+      "address": {
+        "street": "42 Parliament Street",
+        "suburb": "George",
+        "city": "George",
+        "province": "Western Cape",
+        "postalCode": "6530"
+      },
+      "verificationStatus": "Verified"
+    },
+    {
+      "idNumber": "8908174567087",
+      "firstName": "Thomas",
+      "lastName": "Miller",
+      "fullName": "Thomas Miller",
+      "dateOfBirth": "1989-08-17",
+      "gender": "Male",
+      "nationality": "South African",
+      "maritalStatus": "Divorced",
+      "isDeceased": false,
+      "address": {
+        "street": "167 Nelson Mandela Drive",
+        "suburb": "Port Elizabeth",
+        "city": "Gqeberha",
+        "province": "Eastern Cape",
+        "postalCode": "6001"
+      },
+      "verificationStatus": "Verified"
+    },
+    {
+      "idNumber": "9403225678082",
+      "firstName": "Amanda",
+      "lastName": "Taylor",
+      "fullName": "Amanda Taylor",
+      "dateOfBirth": "1994-03-22",
+      "gender": "Female",
+      "nationality": "South African",
+      "maritalStatus": "Single",
+      "isDeceased": false,
+      "address": {
+        "street": "73 Mandela Street",
+        "suburb": "Rustenburg",
+        "city": "Rustenburg",
+        "province": "North West",
+        "postalCode": "0300"
+      },
+      "verificationStatus": "Verified"
+    },
+    {
+      "idNumber": "8012094321085",
+      "firstName": "Christopher",
+      "lastName": "White",
+      "fullName": "Christopher White",
+      "dateOfBirth": "1980-12-09",
+      "gender": "Male",
+      "nationality": "South African",
+      "maritalStatus": "Married",
+      "spouseIdNumber": "8203141234089",
+      "isDeceased": false,
+      "address": {
+        "street": "198 Church Street",
+        "suburb": "Polokwane",
+        "city": "Polokwane",
+        "province": "Limpopo",
+        "postalCode": "0700"
+      },
+      "verificationStatus": "Verified"
+    },
+    {
+      "idNumber": "8203141234089",
+      "firstName": "Michelle",
+      "lastName": "White",
+      "fullName": "Michelle White",
+      "dateOfBirth": "1982-03-14",
+      "gender": "Female",
+      "nationality": "South African",
+      "maritalStatus": "Married",
+      "spouseIdNumber": "8012094321085",
+      "isDeceased": false,
+      "address": {
+        "street": "198 Church Street",
+        "suburb": "Polokwane",
+        "city": "Polokwane",
+        "province": "Limpopo",
+        "postalCode": "0700"
+      },
+      "verificationStatus": "Verified"
+    },
+    {
+      "idNumber": "9508055555088",
+      "firstName": "Daniel",
+      "lastName": "Garcia",
+      "fullName": "Daniel Garcia",
+      "dateOfBirth": "1995-08-05",
+      "gender": "Male",
+      "nationality": "South African",
+      "maritalStatus": "Single",
+      "isDeceased": false,
+      "address": {
+        "street": "321 Market Street",
+        "suburb": "Kimberley",
+        "city": "Kimberley",
+        "province": "Northern Cape",
+        "postalCode": "8301"
+      },
+      "verificationStatus": "Verified"
+    },
+    {
+      "idNumber": "8611206666084",
+      "firstName": "Jessica",
+      "lastName": "Martinez",
+      "fullName": "Jessica Martinez",
+      "dateOfBirth": "1986-11-20",
+      "gender": "Female",
+      "nationality": "South African",
+      "maritalStatus": "Divorced",
+      "isDeceased": false,
+      "address": {
+        "street": "55 Heritage Avenue",
+        "suburb": "Mbombela",
+        "city": "Mbombela",
+        "province": "Mpumalanga",
+        "postalCode": "1200"
+      },
+      "verificationStatus": "Verified"
     }
   ]
 }
